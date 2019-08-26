@@ -8,8 +8,8 @@ alphabet = [
   'Y', 'Z'
 ]
 
-low_range = 0
-high_range = 25
+low_range_seed = 0
+high_range_seed = 25
 
 
 def shift_value(low, high):
@@ -21,17 +21,20 @@ def encrypt(char):
     pass
 
 
-my_message = "z a"
+my_message = "a"
 
-shift_int = shift_value(low_range, high_range)
+shift_int = shift_value(low_range_seed, high_range_seed)
+shift_int = 4
+
 print(f'this is the shift {shift_int}')
 
 for elem in my_message:
     if elem != ' ':
         location_as_int = alphabet.index(elem.upper())
-        shift_location = location_as_int + shift_int
-        adjusted_result = shift_location - high_range
-        result = adjusted_result
+        new_location_as_int = (location_as_int + shift_int)
+        if new_location_as_int < alphabet.__len__():
+            result = alphabet[new_location_as_int]
+        # TODO - Handle new locations that are bigger than the length of the alphabet
     else:
         result = ''
-    print(result)
+    print(f'function result = {result}')
